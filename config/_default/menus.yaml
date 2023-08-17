@@ -10,3 +10,9 @@ main:
   - name: Documentation
     url: docs/
     weight: 20
+  - name: Team
+    url: "team"
+    weight: 30
+  - name: Contact
+    url: "contact"
+    weight: 40
