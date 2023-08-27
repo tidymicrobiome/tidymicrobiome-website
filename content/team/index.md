@@ -6,7 +6,7 @@ image:
   focal_point: "Center"
   preview_only: false
   alt_text: 
-  filename: coders.jpg
+  filename: team.jpg
 sections:
 - block: people
   content:

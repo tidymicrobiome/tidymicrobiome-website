@@ -6,8 +6,8 @@ title: TidyMicrobiome Project
 hero_media: tidymicrobiome.svg
 design:
   background:
-    gradient_start: '#4bb4e3'
-    gradient_end: '#2b94c3'
+    gradient_start: '#957670'
+    gradient_end: '#d7ccc9'
     text_color_light: true
 cta:
   url: docs/
