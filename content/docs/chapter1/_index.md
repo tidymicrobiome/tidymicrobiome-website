@@ -3,9 +3,9 @@ date: "2018-09-09T00:00:00Z"
 icon: book
 icon_pack: fas
 linktitle: Chapter 1
-summary: Learn how to use Wowchemy's docs layout for publishing online courses, software
-  documentation, and tutorials.
-title: Chapter 1
+summary: How to install `tidymicrobiome`
+title: Install tidymicrobiome
+commentable: true
 type: book
 weight: 1
 ---
