@@ -1,8 +1,8 @@
 ---
-date: "2018-09-09T00:00:00Z"
+date: "2023-08-26T00:00:00Z"
 icon: book
 icon_pack: fas
-linktitle: Chapter 1
+linktitle: Chapter 1-Installation
 summary: How to install `tidymicrobiome`
 title: Install tidymicrobiome
 commentable: true
