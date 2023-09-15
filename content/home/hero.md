@@ -24,6 +24,24 @@ cta:
 #     </span>
 ---
 
-`TidyMicrobiome` project is a comprehensive computational framework that can process the whole workflow of data processing and analysis for microbiome data using [tidyverse](https://www.tidyverse.org/) principles.
+
+TidyMicrobiome is a comprehensive computational framework for data processing and analysis of LC-MS data using [tidyverse](https://www.tidyverse.org/) principles.
+
+Install tidymicrobiome:
+
+```
+remotes::install_gitlab("tidymicrobiome/tidymicrobiome")
+```
+
+or
+
+```
+source("https://www.tidymicrobiome.org/tidymicrobiome-packages/install_tidymicrobiome.txt")
+install_tidymicrobiome(from = "tidymicrobiome.org")
+```
+
+[More here](https://www.tidymicrobiome.org/docs/chapter1/)
+
+Citation: [1 microbiomedatabase](https://pubmed.ncbi.nlm.nih.gov/35944213/)
 
 <a class="github-button" href="https://github.com/tidymicrobiome" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Wowchemy Website Builder for Hugo">Star TidyMicrobiome project</a><br><a class="github-button" href="https://github.com/tidymicrobiome/tidymicrobiome-website" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star the Project Docs template">Star TidyMicrobiome tutorial</a><script async defer src="https://buttons.github.io/buttons.js"></script>
