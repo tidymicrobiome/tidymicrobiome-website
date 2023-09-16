@@ -1,0 +1,81 @@
+---
+date: "2019-05-05T00:00:00+01:00"
+title: "Merge data"
+linktitle: "4 Merge data"
+author: admin
+type: book
+weight: 4
+commentable: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = TRUE,
+  out.width = "100%"
+)
+knitr::opts_knit$set(root.dir = here::here("content/docs"))
+```
+
+
+Merging OTU or sample indices based on variables in the data can be a useful means of reducing noise or excess features in an analysis or graphic. 
+
+## Loading included data
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+library(microbiomedataset)
+library(tidyverse)
+data("global_patterns")
+global_patterns
+```
+
+## Merge samples
+
+Remove empty taxa
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+global_patterns2 <-
+  global_patterns %>%
+  mutate2variable(what = "sum_intensity") %>%
+  activate_microbiome_dataset(what = "variable_info") %>%
+  dplyr::filter(sum_intensity > 0)
+
+humantypes <- c("Feces", "Mock", "Skin", "Tongue")
+global_patterns2 <-
+  global_patterns2 %>%
+  activate_microbiome_dataset(what = "sample_info") %>%
+  dplyr::mutate(human = SampleType %in% humantypes)
+
+```
+
+Now on to the merging examples.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+merged_global_patterns2 <- 
+  microbiomedataset::summarise_samples(object = global_patterns2, 
+                                       group_by = "SampleType")
+extract_sample_info(merged_global_patterns2)
+```
+
+## Merge taxas
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+merged_variables <-
+  microbiomedataset::summarize_variables(
+    object = global_patterns2,
+    variable_index = 1:5,
+    remain_variable_info_index = 1
+  )
+dim(merged_variables)
+dim(global_patterns2)
+```
+
+
+## Session information
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+sessionInfo()
+```

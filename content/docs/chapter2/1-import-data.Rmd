@@ -1,0 +1,165 @@
+---
+date: "2019-05-05T00:00:00+01:00"
+title: "Importing data"
+linktitle: "1 Importing data"
+author: admin
+type: book
+weight: 1
+commentable: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = TRUE,
+  out.width = "100%"
+)
+knitr::opts_knit$set(root.dir = here::here("content/docs"))
+```
+
+
+## Loading included data
+
+You can load the demo data in `microbiomedataset` package to see the `microbiome_dataset` class.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+library(microbiomedataset)
+library(tidyverse)
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+data("global_patterns")
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+global_patterns
+```
+
+So you can see that we have 1,9216 variables and 26 samples in the dataset.
+
+## Create microbiome_dataset class object
+
+You can also create the `microbiome_dataset` class using the `create_microbiome_dataset` function. 
+
+We need to prepare at least three data for it.
+
+1. `expression_data`: rows are variables and columns are samples.
+
+2. `sample_info`: Information for all the samples in `expression_data`. The first column should be `sample_id` which should be identical with the column names of `expression_data`.
+
+3. `variable_info`: Information for all the variables in `expression_data`. The first column should be `variable_id` which should be identical with the row names of `expression_data`.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+expression_data <-
+  as.data.frame(matrix(
+    sample(1:100, 100, replace = TRUE),
+    nrow = 10,
+    ncol = 10
+  ))
+
+rownames(expression_data) <- paste0("OTU", 1:nrow(expression_data))
+colnames(expression_data) <-
+  paste0("Sample", 1:ncol(expression_data))
+
+expression_data
+
+variable_info <-
+  as.data.frame(matrix(
+    sample(letters, 70, replace = TRUE),
+    nrow = nrow(expression_data),
+    ncol = 7
+  ))
+
+rownames(variable_info) <- rownames(expression_data)
+colnames(variable_info) <-
+  c("Domain",
+    "Phylum",
+    "Class",
+    "Order",
+    "Family",
+    "Genus",
+    "Species")
+
+variable_info$variable_id <-
+  rownames(expression_data)
+
+variable_info <-
+  variable_info %>% 
+  dplyr::select(variable_id, dplyr::everything())
+
+sample_info <-
+  data.frame(sample_id = colnames(expression_data),
+             class = "Subject")
+
+object <-
+  create_microbiome_dataset(
+    expression_data = expression_data,
+    sample_info = sample_info,
+    variable_info = variable_info
+  )
+
+object
+```
+
+## Convert phyloseq class to microbiome_dataset class object
+
+We can also transfer or convert other common class object to `microbiome_dataset` class.
+
+Please install `phyloseq` package at first.
+
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+if(!require(BiocManager)){
+  install.packages("BiocManager")
+}
+
+if(!require(phyloseq)){
+  BiocManager::install("phyloseq")
+}
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+library(phyloseq)
+data(GlobalPatterns)
+GlobalPatterns
+```
+
+The first function is `convert2microbiome_dataset`:
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+object1 <- 
+  convert2microbiome_dataset(object = GlobalPatterns)
+object1
+```
+
+The second function is `as.microbiome_dataset`:
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+object2 <- 
+  as.microbiome_dataset(object = GlobalPatterns)
+object2
+```
+
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+microbiomedataset::plot_barplot(object = object, 
+                                top_n = 5,
+                                fill = "Phylum")
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+microbiomedataset::plot_barplot(object = object, 
+                                top_n = 5,
+                                fill = "Phylum", 
+                                relative = TRUE, 
+                                re_calculate_relative = TRUE)
+```
+
+## Session information
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+sessionInfo()
+```

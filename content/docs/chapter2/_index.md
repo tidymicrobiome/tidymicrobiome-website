@@ -2,51 +2,38 @@
 date: "2018-09-09T00:00:00Z"
 icon: book-reader
 icon_pack: fas
-linktitle: Chapter 2-microbiomeDataset
-summary: microbiomeDataset package to organize microbiome data.
-title: Chapter 2-microbiomeDataset
+linktitle: "Chapter 2-microbiomeDataset class"
+summary: "microbiomeDataset package to organize microbiome data."
+title: "Chapter 2-microbiomeDataset class"
 commentable: true
 type: book
 weight: 1
 ---
 
-## Flexibility
+## About
 
-This feature can be used for publishing content such as:
+`microbiomedataset` provide the `microbiome_dataset` class which is specifically developed and designed to organize the rectangular microbiome data sets into a standard structure. `microbiomedataset` package also provide a lot of base processing functions to process and operate the `microbiome_dataset` class. In additional, the microbiome_dataset class can be processed by all the packages from `tidymicrobiome`.
 
-- **Online courses**
-- **Project or software documentation**
-- **Tutorials**
-- **Notes**
+## Install `microbiomedataset`
 
-The `courses` folder may be renamed. For example, we can rename it to `docs` for software/project documentation or `tutorials` for creating an online course.
+You can install `microbiomedataset` from GitLab.
 
-## Delete courses
-
-**To remove these pages, delete the `courses` folder and see below to delete the associated menu link.**
-
-## Update site menu
-
-After renaming or deleting the `courses` folder, you may wish to update any `[[main]]` menu links to it by editing your menu configuration at `config/_default/menus.toml`.
-
-For example, if you delete this folder, you can remove the following from your menu configuration:
-
-```toml
-[[main]]
-  name = "Courses"
-  url = "courses/"
-  weight = 50
+```
+if(!require(remotes)){
+install.packages("remotes")
+}
+remotes::install_gitlab("tidymicrobiome/microbiomedataset")
 ```
 
-Or, if you are creating a software documentation site, you can rename the `courses` folder to `docs` and update the associated _Courses_ menu configuration to:
+or GitHub
 
-```toml
-[[main]]
-  name = "Docs"
-  url = "docs/"
-  weight = 50
+```
+remotes::install_github("tidymicrobiome/microbiomedataset")
 ```
 
-## Update the docs menu
+or tidymicrobiome.org
 
-If you use the _docs_ layout, note that the name of the menu in the front matter should be in the form `[menu.X]` where `X` is the folder name. Hence, if you rename the `courses/example/` folder, you should also rename the menu definitions in the front matter of files within `courses/example/` from `[menu.example]` to `[menu.<NewFolderName>]`.
+```
+source("https://www.tidymicrobiome.org/tidymicrobiome-packages/install_tidymicrobiome.txt")
+install_tidymicrobiome(from = "tidymicrobiome.org", which_package = "microbiomedataset")
+```

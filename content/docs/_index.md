@@ -1,16 +1,32 @@
 ---
 title: Preface
-toc: false
+linktitle: Preface
+icon: house
+icon_pack: fas
+toc: true
 type: book
-commentable: true
+commentable: false
 ---
 
-Welcome to the `TidyMicrobiome` Tutorials!
+Here, you can learn how to use `tidymicrobiome` to do the data processing and analysis for the LC-MS metabolomics data. It contains several parts.
 
-microbiomedataset provide the microbiome_dataset class which is specifically developed and designed to organize the rectangular microbiome data sets into a standard structure.
+# If you are new to R or the `tidyverse`
 
-If you have any questions about microbiomedataset, please don’t hesitate to email me (shenxt1990@outlook.com) or reach out me via the social medias below.
+We recommend that you start by learning some basics about R and the [tidyverse](https://www.tidyverse.org/) first, then return here when you feel ready. Here are some resources to start learning:
 
-Microbiome data analysis is complex and challenging due to its high variability. To address this issue, we present microbiomeDataset, an R package that offers a tidyverse-style framework for organizing and processing microbiome data in a standardized and reproducible manner. The package is compatible with other bioinformatics tools and can easily be integrated into existing workflows. A case study using a public microbiome dataset demonstrate the effectiveness of microbiomeDataset in organizing and processing microbiome data. With its comprehensive and accessible solution, microbiomeDataset is suitable for both novice and experienced R users. A detailed tutorial and case study are available in the Supplementary Materials.
+* [Finding Your Way To R](https://education.rstudio.com/learn/), from the RStudio Education team.
 
-{{< cta cta_text="👉 Get Started with Chapter 1" cta_link="chapter1" >}}
+* [Learn the tidyverse](https://www.tidyverse.org/learn/), from the tidyverse team.
+
+# Part 1. Install `tidymicrobiome`
+
+You can learn how to install `tidymicrobiome`, and update it. You can also find here how to download the docker version of `tidymicrobiome` and build your own docker image based on `tidymicrobiome`.
+
+{{< cta cta_text="👉 Chapter 1" cta_link="chapter1" >}}
+
+# Part 2. `massdatabase` package and `mass_dataset` class
+
+You can find here how to download the demo data and create `mass_dataset` class by yourself. And how to use `mass_dataset` class organize your omics data and process it.
+
+{{< cta cta_text="👉 Chapter 2" cta_link="chapter7" >}}
+

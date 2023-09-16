@@ -1,0 +1,73 @@
+---
+date: "2019-05-05T00:00:00+01:00"
+title: "Transform absolute to relative intensity"
+linktitle: "2 Transform absolute to relative intensity"
+author: admin
+type: book
+weight: 2
+commentable: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = TRUE,
+  out.width = "100%"
+)
+knitr::opts_knit$set(root.dir = here::here("content/docs"))
+```
+
+
+## Loading included data
+
+Let's load the demo data.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+library(microbiomedataset)
+library(tidyverse)
+data("global_patterns")
+global_patterns
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+expression_data <-
+  extract_expression_data(global_patterns)
+expression_data$CL3 %>% 
+  head()
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+expression_data$CL3 %>% 
+  head()
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+apply(expression_data, 2, sum)
+```
+The raw data is count.
+
+## Transform to relative intensity
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+global_patterns_relative <-
+  transform2relative_intensity(object = global_patterns)
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+expression_data_relative <-
+  extract_expression_data(global_patterns_relative)
+expression_data_relative$CL3 %>% 
+  head()
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+apply(expression_data_relative, 2, sum)
+```
+## Session information
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+sessionInfo()
+```

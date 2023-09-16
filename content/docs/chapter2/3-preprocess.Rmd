@@ -1,0 +1,117 @@
+---
+date: "2019-05-05T00:00:00+01:00"
+title: "Functions for accessing and preprocessing data"
+linktitle: "3 Functions for accessing and preprocessing data"
+author: admin
+type: book
+weight: 3
+commentable: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = TRUE,
+  out.width = "100%"
+)
+knitr::opts_knit$set(root.dir = here::here("content/docs"))
+```
+
+
+## Loading included data
+
+Let's load the demo data.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+library(microbiomedataset)
+library(tidyverse)
+data("global_patterns")
+global_patterns
+```
+
+## Accessors
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+dim(global_patterns)
+nrow(global_patterns)
+ncol(global_patterns)
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+colnames(global_patterns)
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+head(rownames(global_patterns))
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+extract_sample_info(global_patterns) %>% 
+  colnames()
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+extract_variable_info(global_patterns) %>% 
+  colnames()
+```
+
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+extract_expression_data(global_patterns) %>% 
+  head()
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+extract_sample_info(global_patterns) %>% 
+  head()
+```
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+extract_variable_info(global_patterns) %>% 
+  head()
+```
+
+## Preprocessing
+
+The `microbiomedataset` package also includes functions for filtering, subsetting, and merging abundance data.
+
+In the following example, the `global_patterns` data is first transformed to relative abundance, creating the new `global_patterns2` object, which is then filtered such that only OTUs with a mean greater than 10^-5 are kept.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+global_patterns2 <-
+  global_patterns %>%
+  transform2relative_intensity() %>%
+  mutate2variable(what = "mean_intensity") %>%
+  activate_microbiome_dataset(what = "variable_info") %>%
+  filter(mean_intensity > 10 ^ (-5))
+```
+
+This results in a highly-subsetted object, `global_patterns2`, containing just 4624 of the original ~19216 OTUs.
+
+Next, only remain the variables that phylum Chlamydiae.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+global_patterns_chl <-
+  global_patterns %>%
+  activate_microbiome_dataset(what = "variable_info") %>%
+  dplyr::filter(Phylum == "Chlamydiae")
+```
+
+Next, only remain the samples with total intensity > 20.
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+global_patterns_chl <-
+  global_patterns_chl %>%
+  mutate2sample(what = "sum_intensity") %>%
+  activate_microbiome_dataset(what = "sample_info") %>%
+  filter(sum_intensity > 20)
+```
+
+## Session information
+
+```{r,eval=TRUE,warning=FALSE, R.options="", message=FALSE, cache=TRUE}
+sessionInfo()
+```
