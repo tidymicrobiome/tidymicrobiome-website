@@ -49,5 +49,5 @@ source("https://www.tidymicrobiome.org/tidymicrobiome-packages/install_tidymicro
 
 
 ```r
-install_tidymass(from = "tidymicrobiome.org")
+install_tidymicrobiome(from = "tidymicrobiome.org")
 ```
