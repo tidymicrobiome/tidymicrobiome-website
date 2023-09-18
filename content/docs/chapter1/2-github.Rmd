@@ -41,7 +41,7 @@ remotes::install_github("tidymicrobiome/tidymicrobiome", dependencies = TRUE)
 
 2. If there is a error like below:
 
-Error: Failed to install 'tidymass' from GitHub: HTTP error 403. API rate limit exceeded for 171.66.10.237. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)
+Error: Failed to install 'tidymicrobiome' from GitHub: HTTP error 403. API rate limit exceeded for 171.66.10.237. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)
 
 Try to resolve it by:
 

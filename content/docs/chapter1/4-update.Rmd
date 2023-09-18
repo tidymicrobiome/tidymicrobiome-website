@@ -27,7 +27,7 @@ tidyicrobiome::check_tidyicrobiome_version()
 The update_tidymicrobiome() function can be used to update tidymicrobiome and packages in it.
 
 ```{r, echo=TRUE, eval=FALSE}
-tidymass::update_tidymass(from = "gitlab")
+tidymicrobiome::update_tidymicrobiome(from = "gitlab")
 ```
 
 > If the from = "gitlab" doesn’t work, try set it as from = "github" or from = "gitee".
