@@ -8,7 +8,7 @@ bio: Metabolomics, Multi-omics, Bioinformatics, Systems Biology.
 #   - course: BSc
 #     institution: Inner Mongolia University
 #     year: 2009-2013
-email: "shenxt@stanford.edu"
+email: "xiaotao.shen@outlook.com"
 first_name: Xiaotao
 highlight_name: true
 # interests:
@@ -22,9 +22,9 @@ highlight_name: true
 
 last_name: Shen
 organizations:
-- name: Stanford University
+- name: Nanyang Technologial University, Singapore
   url: https://www.stanford.edu/
-role: Postdoctoral Research Fellow
+role: Assistant Professor
 social:
 - icon: envelope
   icon_pack: fas
