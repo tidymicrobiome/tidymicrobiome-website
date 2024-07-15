@@ -5,7 +5,7 @@ weight: 40
 title: 📥 Contact
 subtitle: 
 content:
-  email: shenxt1990@outlook.com
+  email: xiaotao.shen@outlook.com
   phone: +1 571-267-9283
   form:
     formspree:
