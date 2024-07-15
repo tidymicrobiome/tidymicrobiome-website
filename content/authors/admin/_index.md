@@ -34,7 +34,7 @@ social:
   icon: github
   icon_pack: fab
   # label: Follow me on GitHub
-  link: https://github.com/jaspershen
+  link: https://github.com/tidymicrobiome
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.co.uk/citations?hl=en&user=3TK9yz8AAAAJ
